@@ -16,7 +16,8 @@ var HelpMessage = "Test command from plugin"
 
 // Main function of the plugin must be named `F`
 func F(args []string, msgType int, conn *websocket.Conn) {
-	if err := conn.WriteMessage(msgType, []byte("test")); err != nil {
+	// write output message to browser
+	if err := conn.WriteMessage(msgType, []byte("test message")); err != nil {
 		utils.Log.Error(err)
 		return
 	}

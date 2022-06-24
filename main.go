@@ -14,11 +14,11 @@ const listenPort = ":7567"
 var pluginsDir = "plugins"
 
 func main() {
-	plugin.Load(pluginFiles(pluginsDir))
+	plugins := plugin.Load(pluginFiles(pluginsDir))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// handle websocket connections
-		ws.Handle(w, r)
+		ws.Handle(w, r, plugins)
 	})
 
 	// listen server
